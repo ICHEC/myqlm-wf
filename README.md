@@ -9,7 +9,7 @@ Job"]-->e((End))
 ```
 
 Where the quantum job is evolving a Hamiltonian in time, coded in [quantum-task.py](./quantum-task.py) script, which yields the final state vector $|\psi\rangle$,
-and the classical job reads the statevector, and computes the vector $\langle\psi| {\bf s_i}|\psi \rangle$ and matrix $\langle\psi| {\bf s_i\cdot s_j}|\psi \rangle$ jobs. The code to compute these is located in [struc_fac.py](./struc_fac.py).
+and the classical job reads the statevector, and computes the vector $\langle\psi| {\bf s_i}|\psi \rangle$ and matrix $\langle\psi| {\bf s_i\cdot s_j}|\psi \rangle$ . The code to compute these is located in [struc_fac.py](./struc_fac.py).
 
 The script [run.sh](./run.sh) can be submitted to execute the tasks.
 
