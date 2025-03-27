@@ -92,6 +92,7 @@ t1 = time()
 
 L1, L2 = 3, 3
 nqbits = L1 * L2
+hsize = 2**nqbits
 R0 = 6.0
 # qsqr = qse.utils.squarelattice(6.0, L1, L2)
 
@@ -131,6 +132,11 @@ print('length of result object: ', len(result))
 probs = np.fromiter((sample.probability for sample in result), dtype=float)
 coeff = np.fromiter((sample.amplitude for sample in result), dtype=complex)
 basis = np.fromiter((sample.state.int for sample in result), dtype=int)
+
+if coeff.shape[0] < hsize:
+    coeff0 = np.zeros(2**nqbits, dtype=complex)
+    coeff0[basis] = coeff
+    coeff = coeff0
 
 arr = occ_correlation(result, shape=(L1, L2))
 print(arr)

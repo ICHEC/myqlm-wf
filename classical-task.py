@@ -8,6 +8,7 @@ import struc_fac as sf
 L1, L2, statevector = pickle.load(open('quantum-data.pkl', 'rb'))
 N = L1 * L2
 hsize = 2**N
+
 ibasis = sf.get_basis(hsize=hsize, N=N)
 print(f'Read L1, L2 = ({L1}, {L2})')
 
