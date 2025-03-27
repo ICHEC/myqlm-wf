@@ -10,6 +10,8 @@ __pycache__/
 *.pkl
 # data
 *.dat
+*.res
+scratch/
 
 # Distribution / packaging
 .Python
