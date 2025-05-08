@@ -85,3 +85,22 @@ def get_sisj(statevector, ibasis, N):
     return sij
 #
 
+def struc_fac_from_sij(L1, L2, sij):
+    """
+    Currently restricted to square lattice. Can be extended to arbitrary lattice
+    """
+    Qi = tuple((i1, i2) for i1 in range(L1) for i2 in range(L2))
+    rcell = np.array([[1.0, 0.0], [0.0, 1.0]])
+    qcell = 2 * np.pi * np.linalg.inv(rcell)
+    Rvecs = Qi @ rcell
+    Qvecs = Qi @ qcell
+
+    norm = (L1 * L2)**4
+    s_f = np.empty((L1, L2), dtype=complex)
+    for q, qvec in zip(Qi, Qvecs):
+        exri = np.exp(1j * Rvecs @ qvec)
+        exrj = exri.conj()
+        term = np.einsum('ij,i,j->', sij, exri, exrj)
+        s_f[q] = term
+    s_f /= norm
+    return s_f.real.copy()
