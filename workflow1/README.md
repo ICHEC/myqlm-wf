@@ -1,5 +1,5 @@
 # myqlm-wf
-This is an example folder containing myqlm jobs. The simplest workflow is following -
+In this example we have a very simple workflow, that looks like followin -
 
 ```mermaid
 graph LR
