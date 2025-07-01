@@ -28,7 +28,8 @@ Instead of writing the intermediate data into a file, we initialize MPI environm
 
 Precondition: install mpi4py library with the PATH of ParaStation MPI.
 On VM, we can set PATH of installed ParaStation MPI in .bashrc
-```
+
+```bash
 PSCOM="/opt/parastation"
 export PATH="${PSCOM}/bin${PATH:+:}${PATH}"
 export CPATH="${PSCOM}/include${CPATH:+:}${CPATH}"
@@ -42,12 +43,23 @@ export CPATH="${PARASTATION_MPI}/include${CPATH:+:}${CPATH}"
 export LD_LIBRARY_PATH="${PARASTATION_MPI}/lib64${LD_LIBRARY_PATH:+:}${LD_LIBRARY_PATH}"
 export LIBRARY_PATH="${PARASTATION_MPI}/lib64${LIBRARY_PATH:+:}${LIBRARY_PATH}"
 ```
+
 Please set python PATH for the installed mpi4py.
 
 The hamiltonian evolvement in quantum task and the postprocessing in classical task remains the same. In the quantum task, after the results are obtained from the quantum job, MPI is initialzed as a master and a new process is spawned to do the postprocessing work. The results from quantum job are sent to the worker via MPI send. The worker will be initialized and start to postprocess data after it receives data from the master.
 
-Instead of using a batch script, this test can be done via an interactive session: salloc -N2 --partition=cpu
-After the resource is granted, we can run: srun -n 1 python ./quantum-task.py
-We can also submit run.sh: sbatch run.sh
-Please compile classical-task.py into an execuatable.
+Instead of using a batch script, this test can be done via an interactive session: 
+
+```bash
+salloc -N2 --partition=cpu
+```
+
+After the resource is granted, we can run: 
+
+```bash
+srun -n 1 python ./quantum-task.py
+```
+
+We can also submit run.sh: sbatch `run.sh`
+Please compile `classical-task.py` into an execuatable.
 
