@@ -6,6 +6,9 @@ graph LR
 a((Init)) --> b>"Quantum
 Job"] --> c>"Classical
 Job"]-->e((End))
+
+style b fill:#ffcccc
+style c fill:#ccffcc
 ```
 
 Where the quantum job is evolving a Hamiltonian in time, coded in [quantum-task.py](./quantum-task.py) script, which yields the final state vector $|\psi\rangle$,
