@@ -37,7 +37,7 @@ This is the taskfarming version of the [workflow1](../workflow1/README.md), wher
 
 A representative `input` for the quantum job looks like following dictionary:
 
-```json
+```python
 params = {
     'L1': L1,                # Number of qubits in the first dimension
     'L2': L2,                # Number of qubits in the second dimension
