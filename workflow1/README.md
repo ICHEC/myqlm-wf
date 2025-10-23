@@ -1,5 +1,5 @@
 # myqlm-wf
-In this example we have a very simple workflow, that looks like followin -
+In this example we have a very simple workflow, that looks like following -
 
 ```mermaid
 graph LR
