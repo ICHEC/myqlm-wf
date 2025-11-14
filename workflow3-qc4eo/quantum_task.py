@@ -2,6 +2,8 @@ from qlmaas.qpus import AnalogQPU
 from qat.core import Observable, Schedule, Term
 
 import numpy as np
+from mpi4py import MPI
+
 
 c6 = 865723.02  # (rad/µs)(µm)**6
 duration = 660 # ns
@@ -32,7 +34,10 @@ def generate_rydberg_hamiltonian(qbits):
     ]
 
 
-qubit_coords = ...
+comm = MPI.Comm.Get_parent()
+
+qubit_coords = comm.recv(source=0, tag=2)
+
 schedule = Schedule(drive=generate_rydberg_hamiltonian(qubit_coords),
             tmax=duration/1000)
 
@@ -43,3 +48,7 @@ async_result = my_qpu.submit(job)
 result = async_result.join()
 
 probs = np.array([r.probability for r in result])
+comm.send(probs, dest=0, tag=3)
+
+comm.send(1, dest=0, tag=4)
+comm.Disconnect()

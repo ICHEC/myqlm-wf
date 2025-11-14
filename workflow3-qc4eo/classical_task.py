@@ -15,7 +15,7 @@ encoding = RadialEncoding(
     max_feature=np.max(x_train), shift=1., scaling=5.4, n_features=len(features)
     )
 qbits0 = encoding.encode(x_train[0])
-comm.send(qbits0, dest=0, tag=99)
+comm.send(qbits0, dest=0, tag=0)
 
-comm.send(1, dest=0, tag=88)
+comm.send(1, dest=0, tag=1)
 comm.Disconnect()
