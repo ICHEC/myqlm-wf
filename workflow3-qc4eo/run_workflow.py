@@ -1,7 +1,7 @@
 from mpi4py import MPI
 
 # spawn a process via MPI to do the classical preprocessing
-worker = MPI.COMM_SELF.Spawn('./classical_task.py', None, 1)
+worker = MPI.COMM_SELF.Spawn('python', './classical_task.py', 1)
 
 qbits0 = worker.recv(source=0, tag=99)
 
