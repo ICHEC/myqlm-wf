@@ -1,4 +1,15 @@
 from mpi4py import MPI
 
-# simulator = backends.MyQLMSimulator()
-# probs = simulator.run(qbits0)
+# spawn a process via MPI to do the classical preprocessing
+worker = MPI.COMM_SELF.Spawn('./classical_task-py.exe', None, 1)
+
+qbits0 = worker.recv(source=0, tag=99)
+
+print(qbits0)
+
+end = worker.recv(source=0, tag=88)
+print("Master end signal received, end the job!")
+
+# disconnect from worker
+worker.Disconnect()
+
